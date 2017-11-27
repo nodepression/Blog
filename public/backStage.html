@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MarkDown</title>
     <link rel="stylesheet" href="style/backStage.css">
 </head>
@@ -13,15 +16,20 @@
             <!-- 文章编辑区域 -->
             <div class="edit_area">
                 <p>编辑区域</p>
-                <span>标题 ：</span><input class="title"/> <span>分类 ：</span><input class="title"/> 
-                <textarea id="content" ></textarea>
-                <span>文章介绍 ：</span><input class="article_intro"/>
+                <span>标题 ：</span>
+                <input class="title" />
+                <span>分类 ：</span>
+                <input class="title" />
+                <textarea id="content"></textarea>
+                <span>文章介绍 ：</span>
+                <input class="article_intro" />
             </div>
-            
+
             <!-- 文章预览效果 -->
             <div class="preview">
                 <p>预览效果</p>
-                <span style="opacity:0">标题 ：</span><input style="opacity:0" class="title"/>
+                <span style="opacity:0">标题 ：</span>
+                <input style="opacity:0" class="title" />
                 <div id="result"></div>
                 <p class="publish">发布文章</p>
             </div>
@@ -31,4 +39,5 @@
     <script src="./script/backStage.js"></script>
     <script src="https://cdn.bootcss.com/showdown/1.7.6/showdown.js"></script>
 </body>
+
 </html>

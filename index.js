@@ -10,13 +10,19 @@ var cookieParser = require('cookie-parser');
 //自己定义的router
 var index   = require('./routes/index.js')();
 var getBlog = require('./routes/getBlog.js')();
+var backStage = require('./routes/backStage.js')();
+
+
 var app = express();
 app.use(express.static('public'));
 app.use(cookieParser());
 
-// app.use(bodyParser.urlencoded({ extended: false }));//解析请求体
+app.use(bodyParser.urlencoded({ extended: false }));//解析请求体
+
 app.use('/', index);//对所有路径应用这个路由
 app.use('/blog', getBlog);
+app.use('/backStage',backStage);
+
 //app.use('/manager', manager);//对/manager应用这个路由
 
 

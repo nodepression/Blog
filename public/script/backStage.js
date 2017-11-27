@@ -25,7 +25,7 @@
             data: configure,
             dataType: 'json',
             success: function (myData) {
-                alert(myData.data.state);
+                console.log(myData.data);
             },
             error: function (xhr, type) {
                 console.log(type);
