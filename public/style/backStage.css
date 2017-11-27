@@ -1,0 +1,60 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+ul li {
+    line-height: 24px;
+}
+
+blockquote {
+    border-left: #eee solid 5px;
+    padding-left: 20px;
+}
+
+code {
+    color: #D34B62;
+    background: #F9F2F4;
+}
+
+
+
+.main{
+   width: 100%;
+}
+.intro{
+    height: 80px;
+    width: 100%;
+    background-color: blanchedalmond;
+    text-align: center;
+    line-height: 80px;
+    font-size: 24px;
+    color: white;
+}
+.edit_area{
+    height: 400px;
+    width: 45%;
+    float: left;
+    margin-top: 30px;
+}
+.edit_area>#content{
+    height: 100%;
+    width: 100%;    
+}   
+.preview{
+    width: 45%;
+    height: 400px;
+    float: right;
+    margin-top: 30px;
+}
+.preview>#result{
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+}
+.publish{
+    cursor: pointer;
+}

@@ -3,61 +3,31 @@
 
 <head>
     <title>MarkDown</title>
-    <script src="https://cdn.bootcss.com/showdown/1.7.6/showdown.js"></script>
+    <link rel="stylesheet" href="style/backStage.css">
 </head>
-<style>
-    body {
-        font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
-        font-size: 16px;
-        line-height: 1.42857143;
-        color: #333;
-        background-color: #fff;
-    }
-
-    ul li {
-        line-height: 24px;
-    }
-
-    blockquote {
-        border-left: #eee solid 5px;
-        padding-left: 20px;
-    }
-
-    code {
-        color: #D34B62;
-        background: #F9F2F4;
-    }
-
-    .main{
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-    }
-    #content{
-        height: 400px;
-        width: 45%;
-    }
-    #result{
-        width: 45%;
-    }
-</style>
 
 <body>
     <div>
         <div class="main">
-            <textarea id="content" onkeyup="compile()"></textarea>
-            <div id="result"></div>
+            <div class="intro">个人博客后台管理系统</div>
+            <!-- 文章编辑区域 -->
+            <div class="edit_area">
+                <p>编辑区域</p>
+                <span>标题 ：</span><input class="title"/>
+                <textarea id="content" ></textarea>
+            </div>
+            
+            <!-- 文章预览效果 -->
+            <div class="preview">
+                <p>预览效果</p>
+                <span style="opacity:0">标题 ：</span><input style="opacity:0" class="title"/>
+                <div id="result"></div>
+                <p class="publish">发布文章</p>
+            </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function compile() {
-            var text = document.getElementById("content").value;
-            var converter = new showdown.Converter();
-            var html = converter.makeHtml(text);
-            console.log(html)
-            document.getElementById("result").innerHTML = html;
-        }
-    </script>
+    <script src="./script/jquery-3.2.1.min.js"></script>
+    <script src="./script/backStage.js"></script>
+    <script src="https://cdn.bootcss.com/showdown/1.7.6/showdown.js"></script>
 </body>
-
 </html>
