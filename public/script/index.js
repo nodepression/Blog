@@ -8,39 +8,51 @@ window.onload = function(){
     var js = $('.js');
     var blogBody = $('.blogBody');
 
-    menu.click(function(e){
+    function showMenu(){
         leftNav.css("display","flex");
-        // hide.css("dispaly","block");//为什么不行？
-        hide[0].style.display = "block"; 
+        hide.css("display","block");
+    }
+    function hideMenu(){
+        leftNav.css("display","none");
+        hide.css("display","none");
+    }
+    menu.click(function(e){
+        showMenu();
     });
     hide.click(function(e){
-        leftNav.css("display","none");
-        hide[0].style.display = "none"; 
+       hideMenu();
     });
-    home.click(function(e){
+
+    function toHome(){
         recent.css("display","block");
         specific.css("display","none");
 
         leftNav.css("display","none");
         hide[0].style.display = "none"; 
         blogBody.css("display","none");
+    }
+    home.click(function(e){
+       toHome();
     });
 
-    js.click(function(e){
-        recent.css("display","none");
-        specific.css("display","block");
 
-        leftNav.css("display","none");
-        hide[0].style.display = "none"; 
-        blogBody.css("display","none");
-    });
+
+    // js.click(function(e){
+    //     recent.css("display","none");
+    //     specific.css("display","block");
+    //     $(".specificList>.title").html("JavaScript");
+
+    //     leftNav.css("display","none");
+    //     hide[0].style.display = "none"; 
+    //     blogBody.css("display","none");
+    // });
 
     $("#haha").click(function(){
         blogBody.css("display","block");
         specific.css("display","none");
 
         $.ajax({
-            url: "./blog/recent",
+            url: "/blog/recent",
             type: "get",
             dataType: "json",
             success: function (msg) {
@@ -55,11 +67,14 @@ window.onload = function(){
 }
 
 
+
+//首页显示的最近文章
 var recentList = null;
 $.ajax({
-    url: "./blog/recent",
+    url: "/blog/recent",
     type: "get",
     dataType: "json",
+    async:false, //同步请求
     success: function (msg) {
         recentList = msg.data;
     },
@@ -67,14 +82,31 @@ $.ajax({
         console.log(err.type);
     }
 })
-var reParent = $('.recentList');
-var speParent = $('.specifictList');
-var blogBody = $('.blogBody');
+var specificList = null;
+function getSpecificList(type){
+    $.ajax({
+        url: "/blog/specific",
+        type: "get",
+        dataType: "json",
+        data:{"type":type},
+        async:false, //同步请求
+        success: function (msg) {
+            specificList = msg.data;
+        },
+        error: function (err) {
+            console.log(err.type);
+        }
+    })
+}
 
-//最近博客对象
+var reParent = $('.recentList'); //首页要显示的最近博客列表的父容器
+var speParent = $('.specificList');//某一具体类别的博客列表的父容器
+var blogBody = $('.blogBody');  //博客正文父容器
+
+//最近博客对象构造函数
 function Recent(config){
     var recent = document.createElement('div');
-    recent.className = "recent"+" "+config.id;
+    recent.className = "recent"+" "+config.a_Id;
 
     var title = document.createElement('p');
     title.className = "title";
@@ -86,12 +118,13 @@ function Recent(config){
 
     var date = document.createElement('div');
     date.className = "info";
-    date.innerHTML = config.date;
+    var time = new Date( Date.parse(config.date)).toLocaleString(); 
+    date.innerHTML = "Posted: " + time;
     recent.appendChild(date);
 
     var head = document.createElement('div');
     head.className = "body";
-    head.innerHTML = config.head;
+    head.innerHTML = config.intro;
     recent.appendChild(head);
 
     var type = document.createElement('div');
@@ -102,14 +135,14 @@ function Recent(config){
     return recent;
 }
 
-//某一类具体博客
+//某一类具体文章构造函数
 function Specific(config){
     var specific = document.createElement('div');
-    specific.className = "specific"+" "+config.id;
+    specific.className = "specific"+" "+config.a_Id;
 
     var head = document.createElement('p');
     head.className = "item";
-    head.innerHTML = config.head;
+    head.innerHTML = config.intro;
     specific.appendChild(head);
 
     var hr = document.createElement('hr');
@@ -135,6 +168,7 @@ function loadSpecific(speList){
         speParent[0].appendChild(specific);
     })
 }
+
 //加载博客正文,博客评论(根据id)
 function loadBlog(b_id){
     var blog = null;
@@ -154,3 +188,30 @@ function loadBlog(b_id){
         }
     })
 }
+
+
+$(".type").click(function(e){
+    var myTarget = $(event.target);
+    var type = myTarget.attr("class").split(" ")[1];
+    if((type=="js")||(type=="c")||(type=="hu")){
+        $('.recent').css("display","none");
+        $('.specificList').css("display","block");
+        $(".specificList>.title").html(type);
+        $(".leftNav").css("display","none");
+        $(".hide")[0].style.display = "none"; 
+        $(".blogBody").css("display","none");
+
+        getSpecificList(type);
+        loadSpecific(specificList);
+
+        
+    }
+    else{
+        // toHome();
+    }
+})
+
+function init(){
+    loadrecent(recentList);
+}
+init();

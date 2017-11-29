@@ -42,8 +42,7 @@ module.exports = function () {
             if (err) {
                 console.log('[SELECT ERROR] - ', err.message); 
             } else {
-                var myData = { "status": "200", "message": "ok","data":result}
-                console.info("操作成功")
+                var myData = { "status": "200", "status": "ok","data":result}
                 res.json(myData);
             }
         });

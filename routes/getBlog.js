@@ -13,7 +13,7 @@ module.exports = function () {
         port: config.port,
         database: config.database,
     });
-    connection.connect(function(err) {
+    connection.connect(function (err) {
         if (err) {
             console.error('error connecting: ' + err.stack);
             return;
@@ -36,10 +36,24 @@ module.exports = function () {
         var getInfo = 'select * from article';
         connection.query(getInfo, function (err, result) {
             if (err) {
-                console.log('[SELECT ERROR] - ', err.message); 
+                console.log('[SELECT ERROR] - ', err.message);
             } else {
-                var myData = { "status": "200", "message": "ok","data":result}
+                var myData = { "status": "200", "message": "ok", "data": result }
                 console.info("操作成功")
+                res.json(myData);
+            }
+        });
+    });
+    //得到某一类的所有博客
+    router.get('/specific', function (req, res) {
+        var sql = 'select * from article where type = ?';
+        var sql_value_arr = [req.query.type];
+        connection.query(sql,sql_value_arr, function (err, result) {
+            if (err) {
+                console.log('[SELECT ERROR] - ', err.message);
+            } else {
+                var myData = { "status": "200", "message": "ok", "data": result }
+                console.info("查询"+req.query.type+"成功")
                 res.json(myData);
             }
         });

@@ -3,9 +3,8 @@
 
     function getConfigure(){
         configure.title = $.trim($(".title").val());//文章标题
-        configure.timestamp = new Date().getTime();//发布时间戳
-        configure.type = ["js","c/c++","人文"];//文章类型
-        configure.intro = $.trim($(".article_intro").val());;//文章简短介绍
+        configure.type = $.trim($(".type").val());//文章类型
+        configure.intro = $.trim($(".article_intro").val());//文章简短介绍
         configure.article = $("#result").html(); //文章正文
     }
     //markdown转html
@@ -26,6 +25,9 @@
             dataType: 'json',
             success: function (myData) {
                 console.log(myData.data);
+                if(myData.status=="ok"){
+                    alert("插入成功");
+                }
             },
             error: function (xhr, type) {
                 console.log(type);
