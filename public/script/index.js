@@ -37,16 +37,6 @@ window.onload = function(){
 
 
 
-    // js.click(function(e){
-    //     recent.css("display","none");
-    //     specific.css("display","block");
-    //     $(".specificList>.title").html("JavaScript");
-
-    //     leftNav.css("display","none");
-    //     hide[0].style.display = "none"; 
-    //     blogBody.css("display","none");
-    // });
-
     $("#haha").click(function(){
         blogBody.css("display","block");
         specific.css("display","none");
@@ -56,7 +46,7 @@ window.onload = function(){
             type: "get",
             dataType: "json",
             success: function (msg) {
-               blogBody[0].innerHTML=msg.data[0].article;
+               blogBody[0].innerHTML=msg.data[1].article;
             },
             error: function (err) {
                 console.log(err.type);
@@ -202,9 +192,7 @@ $(".type").click(function(e){
         $(".blogBody").css("display","none");
 
         getSpecificList(type);
-        loadSpecific(specificList);
-
-        
+        loadSpecific(specificList);  
     }
     else{
         // toHome();

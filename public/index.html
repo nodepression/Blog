@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/hover.css">
+    <link rel="stylesheet" href="style/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="style/main.css">
     <title>CLOSER</title>
 </head>
+
 <body>
-  <div class="main">
-      <div class="navBar">
-          <div class="menu"><img src="./images/menu.png" alt="菜单"></div>
-          <div class="name">CLOSER</div>
-      </div>
-      <div class="leftNav">
-        <p class="name">CLOSER</p>
-        <p class="item home">home</p>
-        <p class="item js type">JavaScript</p>
-        <p class="item c type">c/c++</p>
-        <p class="item hu type">人文</p>
-      </div>
-      <div class="hide">
+    <div class="main">
+        <div class="navBar">
+            <div class="menu">
+                <img class="hvr-bounce-in" src="./images/menu.png" alt="菜单">
+            </div>
+            <div class="name">CLOSER</div>
+        </div>
 
-      </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img  class="picItem 15 toArticle" src="./images/1.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img  class="picItem 14 toArticle" src="./images/2.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img  class="picItem 16 toArticle" src="./images/3.jpg">
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
 
-      <div class="article">
-          <div class="left">
-              <!-- 首页最近博客列表 -->
-              <div class="recentList">
+
+        </div>
+
+        <div class="leftNav">
+            <div class="name hvr-float-shadow">CLOSER</div>
+            <div class="item home hvr-curl-top-left">home</div>
+            <div class="item js type hvr-curl-top-right">JavaScript</div>
+            <div class="item c type hvr-curl-bottom-left">c/c++</div>
+            <div class="item hu type hvr-curl-bottom-right">人文</div>
+        </div>
+        <div class="hide">
+
+        </div>
+
+        <div class="article">
+            <div class="left">
+                <!-- 首页最近博客列表 -->
+                <div class="recentList">
                     <!-- <div class="recent">
                             <p class="title">2017 年值得大家看的五本编程书籍【Phodal 书单】</p>
                             <hr>
@@ -35,23 +60,23 @@
                             <p class="body">最近几个月看了不少书，觉得有几本甚是不错，如干货满满的《编程风格》，概念普及中的《Serverless架构:无服务器单页应用开发》。便撰文一篇，简单地介绍一下这几本书。</p>
                             <p class="tags">标签：book recommend</p>
                     </div> -->
-              </div>
+                </div>
 
 
-              <!-- 某一个具体类别下的博客列表 -->
-              <div class="specificList">
-                    <p class="title"></p>
+                <!-- 某一个具体类别下的博客列表 -->
+                <div class="specificList">
+                    <p id="haha" class="title"></p>
                     <hr>
                     <div class="specific">
-                            <p class="item" id="haha">最近几个月看了不少书，觉得有几本甚是不错，如干货满满的《编程风格》</p>
-                            <hr>
+                        <p class="item">最近几个月看了不少书，觉得有几本甚是不错，如干货满满的《编程风格》</p>
+                        <hr>
                     </div>
-              </div>
+                </div>
 
 
-              <!-- 博客正文和评论-->
-              <div class="blogBody">
-                    <div class="article">
+                <!-- 博客正文和评论-->
+                <div class="blogBody">
+                    <div class="articleCon">
                         博客正文
                     </div>
                     <!-- <div class="reviewList">
@@ -59,33 +84,47 @@
                             评论一
                         </div>
                     </div> -->
-              </div>
-          </div>
+                </div>
+            </div>
 
 
-          <div class="right">
-              <div class="classify">
+            <div class="right">
+                <div class="classify">
                     <p class="title">分类</p>
                     <hr>
                     <!-- 所有类别 -->
                     <div class="allCategory">
-                        <p class="item js type">JavaScript</p>
-                        <p class="item c type">C/C++</p>
-                        <p class="item hu type">人文</p>
+                        <div class="item js type hvr-float-shadow" style="display:block">JavaScript</div>
+                        <div class="item c  type hvr-float-shadow" style="display:block">C/C++</div>
+                        <div class="item hu type hvr-float-shadow" style="display:block">人文</div>
                     </div>
-              </div>
-              <!-- 热门博客列表 -->
-              <div class="hotList">
-                <p class="title">热门文章</p>
-                <hr>
-                <div class="allHot">
-                    <p class="item">2017 年值得大家看的五本编程书籍</p>
                 </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <script src="./script/jquery-3.2.1.min.js"></script>
-  <script src="./script/index.js"></script>
+                <!-- 热门博客列表 -->
+                <div class="hotList">
+                    <p class="title">热门文章</p>
+                    <hr>
+                    <div class="allHot">
+                        <div class="hotItem">2017 年值得大家看的五本编程书籍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script/jquery-3.2.1.min.js"></script>
+    <script src="./script/main.js"></script>
+    <script src="./script/swiper-3.4.2.min.js"></script>
+    <script>        
+        (function () {
+            var mySwiper = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: 2000,
+                autoplayDisableOnInteraction: false,
+
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+            })
+        })();   
+    </script>
 </body>
+
 </html>

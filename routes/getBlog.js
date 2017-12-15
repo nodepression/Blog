@@ -59,5 +59,20 @@ module.exports = function () {
         });
     });
 
+    //得到某篇文章
+    router.get('/oneBlog', function (req, res) {
+        var sql = 'select * from article where a_id = ?';
+        var sql_value_arr = [req.query.a_id];
+        connection.query(sql,sql_value_arr, function (err, result) {
+            if (err) {
+                console.log('[SELECT ERROR] - ', err.message);
+            } else {
+                var myData = { "status": "200", "message": "ok", "data": result }
+                console.info("查询"+req.query.a_id+"成功")
+                res.json(myData);
+            }
+        });
+    });
+
     return router;
 }    
